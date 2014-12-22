@@ -1,0 +1,17 @@
+body {
+  padding-top:50px;
+}
+.glyphicon-remove:hover {
+  cursor:pointer;
+}
+textarea {
+  resize: vertical;
+}
+
+.navbar .nav-avatar {
+  margin-top: 6pt;
+}
+
+.navbar .nav-email {
+  margin-right: 10pt;
+}

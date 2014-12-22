@@ -1,0 +1,70 @@
+<div class="instrument">
+
+  <div class="page-header">
+    <h1>Instrument <small>{{instrument.name}}</small></h1>
+  </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <button type="button" class="btn pull-right {{preview ? 'btn-primary' : 'btn-success'}}" ng-model="preview" btn-checkbox btn-checkbox-true="false" btn-checkbox-false="true" ng-if="">
+      {{preview ? 'Edit' : 'Save'}}
+    </button>
+    <h4>
+      Attributes
+    </h4>
+  </div>
+
+  <div class="list-group">
+    <form name="instrumentsForm" class="form" role="form">
+      <fieldset ng-disabled="preview">
+        <a class="list-group-item">
+          <label for="instrumentName">Name</label>
+          <input id="instrumentName" type="text" class="form-control focus" name="name" placeholder="Name" autocomplete="off" required ng-model="instrument.name" >
+        </a>
+        <a class="list-group-item">
+          <label for="instrumentDescription">Description</label>
+          <textarea id="instrumentDescription" class="form-control" name="description" placeholder="Description (max. 5000 words)" autocomplete="off" ng-model="instrument.description" ></textarea>
+        </a>
+        <a class="list-group-item">
+          <label for="instrumentCapacity">Capacity</label>
+          <div class="input-group">
+            <span class="input-group-addon">{{instrument.subjects_count || 0}} of </span>
+            <input id="instrumentCapacity" type="text" class="form-control" name="capacity" placeholder="Capacity" ng-model="instrument.capacity" autocomplete="off" required>
+          </div>
+
+        </a>
+        <a class="list-group-item">
+          <label for="instrumentMicrocontroller">Microcontroller</label>
+          <input id="instrumentMicrocontroller" type="text" class="form-control" name="microcontroller" placeholder="Microcontroller" ng-model="instrument.microcontroller" autocomplete="off" required>
+        </a>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Subjects
+  </div>
+  <div class="list-group">
+    <a class="list-group-item" ng-repeat="subject in subjects">
+      <h4 class="list-group-item-heading">{{subject.name}} <i class="glyphicon glyphicon-remove pull-right"
+        ng-click="removeSubject(subject)"></i></h4>
+        <p class="list-group-item-text">{{subject.description | limitTo: 200}}{{subject.description.length > 200 ? '...' : ''}}</p>
+
+      </a>
+      <a class="list-group-item" ng-if="subjects.length < instrument.capacity">
+        <form name="subjectsForm" class="form">
+          <div class="form-group">
+            <input type="text" class="form-control focus" name="name" placeholder="Name" autocomplete="off" required ng-model="newSubject.name">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="description" placeholder="Description (max. 5000 words)" autocomplete="off" ng-model="newSubject.description"></textarea>
+          </div>
+          <button class="btn btn-default" ng-click="addSubject()">Add</button>
+        </form>
+      </a>
+    </div>
+</div>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+
+</div>

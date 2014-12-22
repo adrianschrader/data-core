@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DataCore</title>
+
+  <!-- Bootstrap -->
+  <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/index.css" rel="stylesheet">
+  <link href="css/instrument.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body ng-app="app">
+  <div ng-controller="NavigationCtrl">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">DataCore</a>
+        </div>
+        <center>
+          <div class="navbar-collapse collapse" id="navbar-main" >
+            <div class="navbar-header navbar-right" ng-if="isAuthenticated">
+              <button class="btn btn-default navbar-right navbar-btn" ng-click="logout()">Sign Out</button>
+              <div class="nav-email navbar-text navbar-right">
+                {{loggedInUser.name}}
+              </div>
+              <div class="nav-avatar navbar-right" >
+                <img class="img-responsive img-rounded" src="{{loggedInUser.gravatar}}" /></a>
+              </div>
+            </div>
+            <form name="loginForm" class="navbar-form navbar-right" validate ng-if="!isAuthenticated && !showError">
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" ng-model="user.email" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" ng-model="user.password" placeholder="Password" required>
+              </div>
+              <div class="form-group">
+                <button ng-click="login(user)" class="btn btn-primary">Sign In</button>
+                <button ng-click="register(user)" class="btn btn-default">Register</button>
+              </div>
+            </form>
+            <div ng-if="showError">
+              <button class="btn btn-default navbar-right navbar-btn" ng-click="hideError()">Try Again</button>
+              <div class="navbar-text navbar-right">
+                <span>{{message}}</span>
+              </div>
+            </div>
+          </div>
+        </center>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="col-md-4 col-lg-2">
+
+    </div>
+    <div class="col-md-8 col-lg-10" ui-view></div>
+  </div>
+
+
+
+  <script src="vendor/jquery/dist/jquery.js"></script>
+  <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="vendor/angular/angular.js"></script>
+  <script src="vendor/angular-resource/angular-resource.js"></script>
+
+  <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="vendor/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="vendor/angular-gravatar/build/md5.js"></script>
+  <script src="vendor/angular-gravatar/build/angular-gravatar.js"></script>
+  <script src="js/common/lb-services.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/instrument/controllers.js"></script>
+  <script src="js/navigation/controllers.js"></script>
+  <script src="js/user/controllers.js"></script>
+  <script src="js/welcome/controllers.js"></script>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

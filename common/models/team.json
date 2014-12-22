@@ -1,0 +1,32 @@
+{
+  "name": "Team",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "ownerId": {
+      "type": "number",
+      "required": true
+    },
+    "memberId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "members": {
+      "type": "hasMany",
+      "model": "User",
+      "foreignKey": "memberId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": []
+}
